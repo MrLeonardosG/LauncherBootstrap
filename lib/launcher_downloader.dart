@@ -28,17 +28,7 @@ class LauncherDownloader {
       return;
     }
 
-    var length = launcherJar.contentLength;
-    var sink = launcherFile.openWrite();
-  
-    Future.doWhile(() async {
-      var received = await launcherFile.length();
-  
-      print("${(received / length) * 100} %");
-      return received != length;
-    });
-  
-    await launcherJar.stream.pipe(sink);
+    await launcherFile.writeAsBytes(launcherJar.bodyBytes);
 
     print('Launcher downloaded successfully.');
   }
