@@ -28,18 +28,15 @@ class LauncherDownloader {
       return;
     }
 
-    var progress = 0;
-    var total = launcherJar.contentLength;
+    final totalBytes = launcherJar.contentLength;
+    var bytesDownloaded = 0;
+    var progress = 0.0;
 
-    var downloaded = 0;
-
-    launcherJar.stream.listen((data) {
-      downloaded += data.length;
-      progress = (downloaded / total) * 100;
-      print('Загрузка: ${progress.toInt()}%');
+    await launcherFile.writeAsBytesStream(launcherJar.body, onBytesReceived: (count) {
+      bytesDownloaded += count;
+      progress = bytesDownloaded / totalBytes;
+      print('Download progress: ${(progress * 100).toStringAsFixed(2)}%');
     });
-    
-    await launcherFile.writeAsBytes(launcherJar.bodyBytes);
 
     print('Launcher downloaded successfully.');
   }
