@@ -30,7 +30,7 @@ class JavaDownloader {
     final javaData = await get(javaLink);
     final body = json.decode(javaData.body);
 
-    final javaZip = await get(Uri.parse(body[0]['url']));
+    final javaZip = await get(Uri.parse(body[0]['download_url']));
     if (javaZip.statusCode != 200) {
       print('Failed to download Java. Status code: ${javaZip.statusCode}');
       return;
