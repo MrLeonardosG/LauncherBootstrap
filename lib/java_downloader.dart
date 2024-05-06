@@ -25,7 +25,7 @@ class JavaDownloader {
     final javaLink = Uri.https(
       'api.azul.com',
       'metadata/v1/zulu/packages/',
-      {'java_version': '17', 'os': _getOs(), 'arch': _getArch(), 'archive_type': _getExt(), 'java_package_type': 'jre', 'javafx_bundled': 'true', 'latest': 'true', 'release_status': 'ga', 'availability_types': 'CA', 'certifications': 'tck', 'page': '1', 'page_size': '1'}
+      {'java_version': '8', 'os': _getOs(), 'arch': _getArch(), 'archive_type': _getExt(), 'java_package_type': 'jre', 'javafx_bundled': 'true', 'latest': 'true', 'release_status': 'ga', 'availability_types': 'CA', 'certifications': 'tck', 'page': '1', 'page_size': '1'}
     );
     final javaData = await get(javaLink);
     final body = json.decode(javaData.body);
