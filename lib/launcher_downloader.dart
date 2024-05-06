@@ -28,15 +28,7 @@ class LauncherDownloader {
       return;
     }
 
-    final totalBytes = launcherJar.contentLength;
-    var bytesDownloaded = 0;
-    var progress = 0.0;
-
-    await launcherFile.writeAsBytesStream(launcherJar.body, onBytesReceived: (count) {
-      bytesDownloaded += count;
-      progress = bytesDownloaded / totalBytes;
-      print('Download progress: ${(progress * 100).toStringAsFixed(2)}%');
-    });
+    await launcherFile.writeAsBytes(launcherJar.bodyBytes);
 
     print('Launcher downloaded successfully.');
   }
